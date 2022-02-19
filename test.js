@@ -7,7 +7,7 @@ function setup() {
 let mainStage = new Stage("main stage")
 SetCurrentStage("main stage")
 
-let mainObject = new RectObject(window.innerWidth / 2, window.innerHeight / 2, 200, 200)
+let mainObject = new CircleObject(window.innerWidth / 2, window.innerHeight / 2, 200)
 mainObject.text = "Wow!! This works!!"
 mainObject.addToStage(mainStage)
 let torch = new Light(mainObject.x, mainObject.y, 200)

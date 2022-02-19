@@ -1,4 +1,34 @@
-
+function CircleObject(x, y, diameter) {
+    this.lightSources = []
+    this.objectType = "circle"
+    this.x = x
+    this.y = y
+    this.diameter = diameter
+    this.text = ""
+    this.textOffsetX = 0
+    this.textOffsetY = 0
+    this.textColor = "black"
+    this.textStroke = "blue"
+    this.textStrokeWeight = 0
+    this.textSize = 20
+    this.textFont = "Candara"
+    this.stroke = "black"
+    this.strokeWeight = 0
+    this.shapeColor = "grey"
+    this.state = {}
+    this.scale = 1
+    this.addToStage = function(stage) {
+        stage.objects.push(this)
+    }
+    this.addToGroup = function(group) {
+        group.objects.push(this)
+    }
+    this.visible = true
+    this.draw = function() {}
+    allObjects.push(this)
+    allCircleObjects.push(this)
+    return this
+}
 function RectObject(x, y, width, height) {
     this.lightSources = []
     this.objectType = "rect"
@@ -31,6 +61,8 @@ function RectObject(x, y, width, height) {
     allRectObjects.push(this)
     return this
 }
+
+
 
 function Stage(name) {
     this.objects = []

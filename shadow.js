@@ -2,6 +2,7 @@ var defaultStage
 var stageMap = {}
 var allObjects = []
 var allRectObjects = []
+var allCircleObjects = []
 var fullCanvas = false
 var currentStage = "default"
 //shadow
@@ -38,7 +39,6 @@ function windowResized() {
 
 function updateShadows(stage) {
     shadowOverlay.clear();
-    // Black, covering entire screen, foreground
     shadowOverlay.background(color(
         stage.currentLight.color.r,
         stage.currentLight.color.g,
