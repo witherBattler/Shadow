@@ -6,9 +6,7 @@ function setup() {
     coolAnimation = new Animation([
         "https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dmlld3xlbnwwfHwwfHw%3D&w=1000&q=80",
         "https://www.logoworks.com/wp-content/uploads/2014/03/fruit-vegetable-logos-templates-logo-designs-037-1.png",
-    ], 30, function() {
-        console.log("wow..")
-    })
+    ], 30)
 }
 
 let mainStage = new Stage("main stage")

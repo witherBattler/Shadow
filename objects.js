@@ -1,6 +1,6 @@
 function CircleObject(x, y, diameter) {
     this.lightSources = []
-    this.objectType = "circle"
+    this.objectShape = "circle"
     this.x = x
     this.y = y
     this.diameter = diameter
@@ -31,7 +31,7 @@ function CircleObject(x, y, diameter) {
 }
 function RectObject(x, y, width, height) {
     this.lightSources = []
-    this.objectType = "rect"
+    this.objectShape = "rect"
     this.x = x
     this.y = y
     this.width = width
@@ -104,7 +104,7 @@ function Light(x, y, radius) {
 }
 
 function CheckCollision(object1, object2) {
-    var collisionType = object1.objectType + object2.objectType
+    var collisionType = object1.objectShape + object2.objectShape
     switch(collisionType) {
         case "rectrect":
         //Thanks to https://happycoding.io/tutorials/processing/collision-detection    
@@ -144,7 +144,8 @@ function intersects(circle, rect) {
     return (cornerDistanceSq <= (Math.sqrt(circle.diameter / 2)));
 }
 
-function SpriteObject(x, y, startingAnimation) {
+function SpriteObject(x, y) {
+    this.objectShape = "rect"
     this.x = x
     this.y = y
     this.width = width
@@ -159,8 +160,10 @@ function SpriteObject(x, y, startingAnimation) {
     this.draw = function() {}
     this.speed = 0
     this.rotationSpeed
-    this.animation = animation
     this.scale = 0
+    this.animation = null
+    this.currentAnimationFrame = 0
+    this.currentAnimaitonFrameUpdate = 0
 }
 
 function Animation(picturesArray, name, callback = function() {}) {

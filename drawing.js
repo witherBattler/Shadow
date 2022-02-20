@@ -15,7 +15,7 @@ function drawStage(stage) {
 }
 function drawObject(object) {
     if(object.visible){
-        switch(object.objectType) {
+        switch(object.objectShape) {
             case "rect":
                 drawRect(object)
                 break;
