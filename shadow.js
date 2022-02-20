@@ -3,6 +3,7 @@ var stageMap = {}
 var allObjects = []
 var allRectObjects = []
 var allCircleObjects = []
+var allAnimations = []
 var fullCanvas = false
 var currentStage = "default"
 //shadow

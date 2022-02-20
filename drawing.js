@@ -41,7 +41,7 @@ function drawRect(object) {
     fill(object.shapeColor)
     textAlign(CENTER)
     rectMode(CENTER)
-    rect(object.x, object.y, object.width * object.scale, object.height * object.scale)    
+    rect(object.x, object.y, object.width * object.scale, object.height * object.scale) 
 }
 function drawCircle(object) {
     stroke(object.stroke)
