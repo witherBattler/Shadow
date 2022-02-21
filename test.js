@@ -4,24 +4,26 @@ function setup() {
     canvas = CreateFullCanvas()
     InitializeShadows()
     coolAnimation = new Animation([
-        "https://images.unsplash.com/photo-1453728013993-6d66e9c9123a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dmlld3xlbnwwfHwwfHw%3D&w=1000&q=80",
-        "https://www.logoworks.com/wp-content/uploads/2014/03/fruit-vegetable-logos-templates-logo-designs-037-1.png",
-    ], 30)
+        "https://media.istockphoto.com/photos/small-shrinking-currency-dollar-in-inflation-on-white-background-picture-id174672992?b=1&k=20&m=174672992&s=170667a&w=0&h=b-CcObjDfgFS4qFbnJM5GEKwO9vSU3Ckanfo9nVI7o4=",
+        "https://media.istockphoto.com/photos/big-and-small-picture-id172759822?b=1&k=20&m=172759822&s=170667a&w=0&h=kkmaR2OYuS14rTiEotbzXoBecwnRePNC79Jsgl3M4dY=",
+        "https://yt3.ggpht.com/ytc/AKedOLStYivqi6PWtFuYblFWPmN7ec3UTDUx0Fp-Y_7N3A=s900-c-k-c0x00ffffff-no-rj",
+    ], function() {
+        square1.animation = coolAnimation
+    })
 }
-
 let mainStage = new Stage("main stage")
 SetCurrentStage("main stage")
-
-let square1 = new CircleObject(window.innerWidth / 2, window.innerHeight / 2, 200, 200)
-square1.text = "Heck yeah!! square1"
-square1.addToStage(mainStage)
-let square2 = new RectObject(window.innerWidth / 2, window.innerHeight / 2, 200, 200)
-square2.text = "Wow!! square2"
-square2.addToStage(mainStage)
-
+let square1 = new SpriteObject(window.innerWidth / 2, window.innerHeight / 2, 200, 200)
+square1.addToStage(mainStage)   
+square1.speed = 5
+square1.scale = 0.3
 
 function draw() {
     background("white")
+    square1.pointTowards(mouseX, mouseY)
+    square1.movingTowards = {
+        x: mouseX,
+        y: mouseY
+    }
     Update()
 }
-

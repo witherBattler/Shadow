@@ -1,4 +1,5 @@
 function CircleObject(x, y, diameter) {
+    this.objectType = "CircleObject"
     this.lightSources = []
     this.objectShape = "circle"
     this.x = x
@@ -30,6 +31,7 @@ function CircleObject(x, y, diameter) {
     return this
 }
 function RectObject(x, y, width, height) {
+    this.objectType = "RectObject"
     this.lightSources = []
     this.objectShape = "rect"
     this.x = x
@@ -65,6 +67,7 @@ function RectObject(x, y, width, height) {
 
 
 function Stage(name) {
+    this.objectType = "Stage"
     this.objects = []
     this.groups = []
     this.lightSources = [
@@ -83,12 +86,14 @@ function Stage(name) {
 }
 
 function Group() {
+    this.objectType = "Group"
     this.objects = []
     this.addToStage = function(stage) {
         stage.groups.push(this)
     }
 }
 function Light(x, y, radius) {
+    this.objectType = "Light"
     this.x = x
     this.y = y
     this.offsetX = 0
@@ -145,41 +150,66 @@ function intersects(circle, rect) {
 }
 
 function SpriteObject(x, y) {
+    this.objectType = "SpriteObject"
     this.objectShape = "rect"
     this.x = x
     this.y = y
-    this.width = width
-    this.height = height
+    this.defaultWidth = 100
+    this.defaultHeight = 100
     this.velocityX = 0
     this.velocityY = 0
     this.rotation = 0
+    this.lightSources = []
     this.pointTowards = function(x, y) {
-
+        push()
+        translate(this.x, this.y)
+        angleMode(RADIANS)
+        this.rotation = (atan2(y - this.y, x - this.x)) * 180 / Math.PI
+        pop()
     }
     this.state = {}
     this.draw = function() {}
-    this.speed = 0
-    this.rotationSpeed
+    this.speed = 1
+    this.movingTowards = null
+    this.rotationSpeed = 0
     this.scale = 0
+    this.shapeColor = "grey"
     this.animation = null
     this.currentAnimationFrame = 0
-    this.currentAnimaitonFrameUpdate = 0
+    this.currentAnimationFrameUpdate = 0
+    //text
+    this.text = ""
+    this.textOffsetX = 0
+    this.textOffsetY = 0
+    this.textColor = "black"
+    this.textStroke = "blue"
+    this.textStrokeWeight = 0
+    this.textSize = 20
+    this.textFont = "Candara"
+    this.visible = true
+    this.addToStage = function(stage) {
+        stage.objects.push(this)
+    }
+    this.addToGroup = function(group) {
+        group.objects.push(this)
+    }
 }
 
-function Animation(picturesArray, name, callback = function() {}) {
+function Animation(picturesArray, callback = function() {}) {
     var newAnimation = {
+        objectType: "Animation",
         imageFrames: [],
-        name: name,
         loadingFinished: false,
         offsetX: 0,
         offsetY: 0,
-        framesForChange: 250,
+        framesForChange: 30,
         animationRepeat: true,
     }
     for(var i = 0; i != picturesArray.length; i++) {
         loadImage(picturesArray[i], function(img) {
             newAnimation.imageFrames.push(img)
             if(newAnimation.imageFrames.length == picturesArray.length) {
+                newAnimation.loadingFinished = true;
                 callback()
             }
         }, function() {
